@@ -25,11 +25,12 @@ const BSheet = ({id, contentView, data, stackOfRoute}) => {
 
     useEffect(() => {
         // fetching data
-        fetch('http://')
-        let timeout = setTimeout(() => {
+        fetch('http://18.218.101.141:5000/api/v1/category')
+        .then(response => response.json())
+        .then(data => {
             handleClose();
-        }, 5000);
-        return () => clearTimeout(timeout);
+        });
+    
     }, []);
 
     return (
