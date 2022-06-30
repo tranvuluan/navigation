@@ -18,7 +18,7 @@ const bottomSheetReducer = (state = initialState, action) => {
             const newStackModalPush = modal.stackModal || [];
             const modalPayload = {
                 ...action.payload.modal,
-                id: action.payload.modal.id
+                id: newStackModalPush.length + 1
             }
             newStackModalPush.push(modalPayload);
             const newModalsPush = state.modals.map(modal => {

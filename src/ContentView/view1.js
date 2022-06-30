@@ -4,8 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { viewTypes } from './viewTypes';
 import { showBottomSheetModal } from '../redux/BottomSheet/actions';
 import {useDispatch} from 'react-redux';
-import { getCurrentRouteName } from '../../App';
-
+import { navigationRef } from '../../App';
 
 const View1 = ({data}) => {
   const dispatch = useDispatch();
@@ -17,9 +16,8 @@ const View1 = ({data}) => {
 
   const handlePress = () => {
     showBottomSheetModal(dispatch, {
-      routeName: getCurrentRouteName().name,
+      routeName: navigationRef.getCurrentRoute().name,
       modal: {
-        id: '2',
         contentView: viewTypes.VIEW2,
         data: data2
       }

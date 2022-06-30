@@ -1,21 +1,29 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BSheet from './BSheet';
-import { getCurrentRouteName } from '../../App';
+// import { getCurrentRouteName } from '../../App';
+import { navigationRef } from '../../App';
 
-const BottomSheet = (navigationRef) => {
+
+const BottomSheet = () => {
+    const [routeName, setRouteName] = React.useState(null);
     const dispatch = useDispatch();
-    const routeName = getCurrentRouteName();
-    console.log(routeName);
     const bottomsheet = useSelector(state => state.bottomsheet); 
     console.log('BottomSheet: ', bottomsheet);
     const modals = bottomsheet.modals; 
-    const modal = modals.find(modal => modal.routeName === 'Home');
+    const modal = routeName && modals.find(modal => modal.routeName === routeName);
     const stackModal = modal ? modal.stackModal : null
     console.log('-------------Stack ---------');
     console.log(stackModal);
 
+    console.log('-------------Route ---------');
+    console.log(routeName);  
+    
+    useEffect(() => {
+        console.log(navigationRef.current.getCurrentRoute().name)
+        setRouteName(navigationRef.current.getCurrentRoute().name);
+    }, []);
 
     return (
         <>

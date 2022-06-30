@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import { replaceBottomSheetModal } from '../redux/BottomSheet/actions';
 import { viewTypes } from './viewTypes';
+import { navigationRef } from '../../App';
 
 const View2 = ({data}) => {
   const navigation = useNavigation();
@@ -16,9 +17,8 @@ const View2 = ({data}) => {
 
   const handleReplace = () => [
     replaceBottomSheetModal(dispatch, {
-      routeName: 'Home',
+      routeName: navigationRef.getCurrentRoute().name,
       modal: {
-        id: '3',
         contentView: viewTypes.VIEW3,
         data: data3
       }

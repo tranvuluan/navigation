@@ -3,7 +3,6 @@ import React, {useState, useLayoutEffect, useEffect} from 'react'
 import { useNavigation } from '@react-navigation/native';
 
 const About = ({navigation}) => {
-
   return (
     <View style={styles.container}>
       <Text>About</Text>

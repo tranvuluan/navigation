@@ -6,7 +6,7 @@ import { showBottomSheetModal } from '../../redux/BottomSheet/actions';
 import { viewTypes } from './../../ContentView/viewTypes';
 import BottomSheet from '../../ActionSheet/BottomSheet';
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   const data1 = {
@@ -18,10 +18,9 @@ const Home = ({ navigation }) => {
     showBottomSheetModal(dispatch, {
       routeName: route.name,
       modal: {
-        id: '1',
         contentView: viewTypes.VIEW1,
-        isShow: true,
-        data: data1
+        data: data1,
+        isAllowClose: false
       }
     })
   }

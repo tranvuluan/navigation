@@ -7,6 +7,7 @@ import AboutScreen from './src/screens/About';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
 import BottomSheet from './src/ActionSheet/BottomSheet';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 const Stack = createNativeStackNavigator();
 // import "./src/ActionSheet/MySheet";
 // import "./src/ActionSheet/Sheet2";
@@ -34,20 +35,21 @@ export function navigate(name, params) {
 
 const App = () => {
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <Provider store={store}>
       <NavigationContainer ref={navigationRef}
-        onReady={() => navigate('Home')}
+        onReady={() =>  navigate('Home')}
 
         onStateChange={() => {
-          const previousRouteName = routeNameRef.current
-          const currentRouteName = navigationRef.current.getCurrentRoute().name
+          // const previousRouteName = routeNameRef.current
+          // const currentRouteName = navigationRef.current.getCurrentRoute().name
 
-          if (previousRouteName !== currentRouteName) {
-            // Do something here with it
-          }
+          // if (previousRouteName !== currentRouteName) {
+          //   // Do something here with it
+          // }
 
-          // Save the current route name for later comparision
-          routeNameRef.current = currentRouteName
+          // // Save the current route name for later comparision
+          // routeNameRef.current = currentRouteName
         }}
       >
         <Stack.Navigator initialRouteName='Home'>
@@ -62,9 +64,10 @@ const App = () => {
           />
           <Stack.Screen name="About" component={AboutScreen} />
         </Stack.Navigator>
+        <BottomSheet />
       </NavigationContainer>
-      <BottomSheet />
     </Provider>
+    </GestureHandlerRootView>
   )
 }
 
