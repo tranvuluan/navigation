@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import ActionSheet, { SheetManager, SheetProps, registerSheet } from "react-native-actions-sheet";
 import { mapContentView } from "../ContentView/mapContentView";
 import { closeBottomSheetModal } from '../redux/BottomSheet/actions';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-const BSheet = ({id, contentView, data, stackOfRoute}) => {
+const BSheet = ({ id, contentView, data, stackOfRoute }) => {
     const dispatch = useDispatch();
     // connect isAllowClose to store
     const isAllowClose = useSelector(state => state.bottomsheet.modals.find(modal => modal.routeName === stackOfRoute).stackModal.pop().isAllowClose);
@@ -23,18 +23,26 @@ const BSheet = ({id, contentView, data, stackOfRoute}) => {
         });
     }
 
-    useEffect(() => {
-        // fetching data
+    // useEffect(() => {
+    //     // fetching data
+    //     fetch('http://18.218.101.141:5000/api/v1/category')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         handleClose();
+    //     });
+
+    // }, []);
+
+    const handleOpened = () => {
         fetch('http://18.218.101.141:5000/api/v1/category')
-        .then(response => response.json())
-        .then(data => {
-            handleClose();
-        });
-    
-    }, []);
+            .then(response => response.json())
+            .then(data => {
+                handleClose();
+            });
+    }
 
     return (
-        <ActionSheet id={id} onClose={handleClose} closable={isAllowClose} >
+        <ActionSheet id={id} onOpen={handleOpened} onClose={handleClose} closable={isAllowClose} >
             {mapContentView(contentView, data)}
         </ActionSheet>
     );

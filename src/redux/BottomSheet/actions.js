@@ -37,11 +37,12 @@ export const closeBottomSheetModal = (dispatch, {routeName}) => {
     })
 }
 
-export const popBottomSheetModal = (dispatch, routeName) => {
+export const changeStatusBottomSheetModal = (dispatch, {routeName, status}) => {
     dispatch({
-        type: actionTypes.POP_MODAL,
+        type: actionTypes.CHANGE_STATUS_MODAL,
         payload: {
-            routeName: routeName
+            routeName: routeName,
+            status: status
         }
     })
-}
+}; 
