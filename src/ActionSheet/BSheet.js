@@ -42,7 +42,7 @@ const BSheet = ({ id, contentView, data, stackOfRoute }) => {
     }
 
     return (
-        <ActionSheet id={id} onOpen={handleOpened} onClose={handleClose} closable={isAllowClose} >
+        <ActionSheet id={id}  onOpen={handleOpened} onClose={handleClose} closable={isAllowClose} >
             {mapContentView(contentView, data)}
         </ActionSheet>
     );
