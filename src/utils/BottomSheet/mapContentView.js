@@ -1,8 +1,10 @@
 import React from 'react';
-import View1 from "./view1";
-import View2 from "./view2";
-import View3 from './view3';
-import View4 from './view4';
+import View1 from '../../components/BottomSheetView/view1';
+import View2 from '../../components/BottomSheetView/view2';
+import View3 from '../../components/BottomSheetView/view3';
+import View4 from '../../components/BottomSheetView/view4';
+
+
 import { viewTypes } from './viewTypes';
 
 export const mapContentView = (contentView, data, viewOfRoute, actionSheetRef) => {

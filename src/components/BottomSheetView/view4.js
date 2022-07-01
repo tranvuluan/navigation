@@ -2,16 +2,16 @@ import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react';
 
 
-const View3 = ({ data }) => {
+const View4 = ({ data, viewOfRoute, actionSheetRef }) => {
   return (
     <View style={styles.contentContainer}>
-      <Text>View 3 🎉</Text>
+      <Text>View 4 🎉</Text>
       <Text>Code: {data.code} - {data.name} 🎉</Text>
     </View>
   )
 }
 
-export default View3
+export default View4
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
   },
   contentContainer: {
-    height: 200,
+    flex: 1,
     alignItems: 'center',
   },
-});
+});1

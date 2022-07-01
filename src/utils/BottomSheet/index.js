@@ -1,35 +1,31 @@
 import React from 'react';
 import { showBottomSheetModal, replaceBottomSheetModal, closeBottomSheetModal, allowCloseBottomSheetModal } from '../../redux/BottomSheet/actions';
-import { viewTypes } from './ModalViews/viewTypes';
-import { mapContentView } from './ModalViews/mapContentView';
+import { viewTypes } from './viewTypes';
+import { mapContentView } from './mapContentView';
 import store from '../../redux/store';
 
 
 
-const ShowBottomSheet = (routeName, contentView, isAllowClose, data) => {
+const ShowBottomSheet = (routeName, contentView, isAllowClose, data, typeOfShow) => {
     const modal = {
         contentView: contentView,
         isAllowClose: isAllowClose,
         data: data,
     }
-    showBottomSheetModal(store.dispatch, {
-        routeName: routeName,
-        modal: modal
-    });
+
+    if (typeOfShow === 'replace') {
+        replaceBottomSheetModal(store.dispatch, {
+            routeName: routeName,
+            modal: modal
+        });
+    } else {
+        showBottomSheetModal(store.dispatch, {
+            routeName: routeName,
+            modal: modal
+        });
+    }
 }
 
-const ReplaceButtomSheet = (routeName, contentView, isAllowClose, data) => {
-    const modal = {
-        contentView: contentView,
-        isAllowClose: isAllowClose,
-        data: data
-    }
-
-    replaceBottomSheetModal(storedispatch, {
-        routeName: routeName,
-        modal: modal
-    });
-};
 
 const CloseBottomSheet = (routeName) => {
     closeBottomSheetModal(store.dispatch, {
@@ -46,7 +42,6 @@ const AllowCloseBottomSheet = (routeName) => {
 
 export {
     ShowBottomSheet,
-    ReplaceButtomSheet,
     CloseBottomSheet,
     AllowCloseBottomSheet,
     viewTypes,

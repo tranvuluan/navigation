@@ -1,20 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import ActionSheet, { SheetManager } from "react-native-actions-sheet";
-import { closeBottomSheetModal } from '../../redux/BottomSheet/actions';
-import { useDispatch } from 'react-redux';
-import { mapContentView } from './ModalViews/mapContentView';
+import { CloseBottomSheet, mapContentView } from '../../utils/BottomSheet';
 
 const BSheet = ({ id, contentView, data, stackOfRoute, isAllowClose }) => {
     const actionSheetRef = useRef();
-    const dispatch = useDispatch();
     useEffect(() => {
         SheetManager.show(id);
     }, []);
 
     const handleClose = async () => {
-        closeBottomSheetModal(dispatch, {
-            routeName: stackOfRoute
-        });
+        CloseBottomSheet(stackOfRoute);
     }
 
     const handleOpened = () => {

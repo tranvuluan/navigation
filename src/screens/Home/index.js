@@ -4,9 +4,7 @@ import { useDispatch } from 'react-redux';
 import { changeRoute } from '../../redux/Route/actions';
 import {
   ShowBottomSheet,
-  ReplaceButtomSheet,
   viewTypes,
-  mapContentView
 } from '../../utils/BottomSheet';
  
 
@@ -31,7 +29,7 @@ const Home = ({ navigation, route }) => {
 
 
   const handlePress = () => {
-    ShowBottomSheet('Home', viewTypes.VIEW1, false, data1);
+    ShowBottomSheet('Home', viewTypes.VIEW1, false, data1, 'push');
   }
 
 

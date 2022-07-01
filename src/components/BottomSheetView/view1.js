@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Button, ActivityIndicator, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react';
-import { AllowCloseBottomSheet, viewTypes } from '../';
-
+import { AllowCloseBottomSheet, ShowBottomSheet, viewTypes } from './../../utils/BottomSheet';
 
 const View1 = ({ data, viewOfRoute, actionSheetRef }) => {
   const [fetched, setFetched] = useState();
@@ -13,7 +12,7 @@ const View1 = ({ data, viewOfRoute, actionSheetRef }) => {
       .then(response => response.json())
       .then(data => {
         console.log('fetched')
-        AllowCloseBottomSheet(viewTypes.VIEW1);
+        AllowCloseBottomSheet(viewOfRoute);
         setFetched(true);
       });
 
@@ -25,14 +24,7 @@ const View1 = ({ data, viewOfRoute, actionSheetRef }) => {
   }
 
   const handlePress = () => {
-    // showBottomSheetModal(dispatch, {
-    //   routeName: navigationRef.getCurrentRoute().name,
-    //   modal: {
-    //     contentView: viewTypes.VIEW2,
-    //     data: data2,
-    //     isAllowClose: true
-    //   }
-    // })
+    ShowBottomSheet('Home', viewTypes.VIEW2, true, data2, 'push');
   }
 
   return (
