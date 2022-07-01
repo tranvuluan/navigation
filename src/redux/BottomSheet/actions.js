@@ -1,34 +1,41 @@
 import { actionTypes } from "./actionTypes"
 
-export const showBottomSheetModal = (dispatch, {routeName, modal}) => {
+export const showBottomSheetModal = (dispatch, { routeName, modal }) => {
     dispatch({
         type: actionTypes.SHOW_MODAL,
         payload: {
-            modal: {...modal, replace: false},
+            modal: { ...modal, replace: false, selfClose: false },
             routeName: routeName
         }
     })
 }
 
-export const replaceBottomSheetModal = (dispatch, {routeName, modal}) => {
+export const replaceBottomSheetModal = (dispatch, { routeName, modal }) => {
+    dispatch({
+        type: actionTypes.SELF_CLOSE,
+        payload: {
+            routeName: routeName
+        }
+    });
+    dispatch({
+        type: actionTypes.CLOSE_MODAL,
+        payload: {
+            routeName: routeName
+        }
+    });
     dispatch({
         type: actionTypes.SHOW_MODAL,
         payload: {
-            modal: {...modal, replace: true},
+            modal: { ...modal, replace: true },
             routeName: routeName
         }
     });
 
-    // dispatch({
-    //     type: actionTypes.CLOSE_MODAL,
-    //     payload: {
-    //         routeName: routeName
-    //     }
-    // });
+
 
 };
 
-export const closeBottomSheetModal = (dispatch, {routeName}) => {
+export const closeBottomSheetModal = (dispatch, { routeName }) => {
     dispatch({
         type: actionTypes.CLOSE_MODAL,
         payload: {
@@ -37,7 +44,7 @@ export const closeBottomSheetModal = (dispatch, {routeName}) => {
     })
 }
 
-export const allowCloseBottomSheetModal = (dispatch, {routeName}) => {
+export const allowCloseBottomSheetModal = (dispatch, { routeName }) => {
     dispatch({
         type: actionTypes.ALLOW_CLOSE,
         payload: {

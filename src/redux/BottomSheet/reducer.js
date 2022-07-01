@@ -1,5 +1,6 @@
 import { ROUTE } from "../../navigation/typeRoute";
 import { actionTypes } from "./actionTypes";
+import { SheetManager } from "react-native-actions-sheet";
 
 const initialState = {
     modals: [
@@ -21,6 +22,9 @@ const bottomSheetReducer = (state = initialState, action) => {
                 ...action.payload.modal,
                 id: newStackModalPush.length + 1
             }
+            // if (action.payload.modal.replace === true) {
+            //     SheetManager.hide(newStackModalPush.length);
+            // }
             newStackModalPush.push(modalPayload);
             const newModalsPush = state.modals.map(modal => {
                 if (modal.routeName === action.payload.routeName) {
@@ -35,13 +39,32 @@ const bottomSheetReducer = (state = initialState, action) => {
                 modals: newModalsPush
             }
 
+        case actionTypes.SELF_CLOSE:
+            // get  modal by route name
+            console.log("SELF_CLOSE");
+            const modalSelfClose = state.modals.find(modal => modal.routeName === action.payload.routeName);
+            let newSelfStackModalReplace = modalSelfClose.stackModal;
+            newSelfStackModalReplace[newSelfStackModalReplace.length - 1].selfClose = true;
+            const newSelfModalsReplace = state.modals.map(modal => {
+                if (modal.routeName === action.payload.routeName) {
+                    modal = {
+                        routeName: action.payload.routeName,
+                        stackModal: newSelfStackModalReplace
+                    }
+                }
+                return modal;
+            })
+            return {
+                modals: newSelfModalsReplace
+            }
+
+
         case actionTypes.CLOSE_MODAL:
             // get  modal by route name
             console.log("CLOSE_MODAL");
             const modalReplace = state.modals.find(modal => modal.routeName === action.payload.routeName);
             let newStackModalReplace = modalReplace.stackModal;
-            // newStackModalReplace.pop();
-         
+            newStackModalReplace.pop();
             const newModalsReplace = state.modals.map(modal => {
                 if (modal.routeName === action.payload.routeName) {
                     modal = {
