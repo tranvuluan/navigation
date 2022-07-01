@@ -1,37 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import ActionSheet, { SheetManager, SheetProps, registerSheet } from "react-native-actions-sheet";
 import { mapContentView } from "../ContentView/mapContentView";
 import { closeBottomSheetModal } from '../redux/BottomSheet/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-const BSheet = ({ id, contentView, data, stackOfRoute }) => {
+const BSheet = ({ id, contentView, data, stackOfRoute, isAllowClose, replace }) => {
+    const actionSheetRef = React.createRef();
     const dispatch = useDispatch();
     // connect isAllowClose to store
-    const isAllowClose = useSelector(state => state.bottomsheet.modals.find(modal => modal.routeName === stackOfRoute).stackModal.pop().isAllowClose);
-    console.log('isAllowClose: ', isAllowClose);
-
 
     useEffect(() => {
-        console.log('id: ', id);
+        if (replace)
+            SheetManager.hide(id - 1)
         SheetManager.show(id);
     }, []);
 
     const handleClose = async () => {
-        // await SheetManager.hide(id);
         closeBottomSheetModal(dispatch, {
             routeName: stackOfRoute
         });
     }
 
     // useEffect(() => {
-    //     // fetching data
-    //     fetch('http://18.218.101.141:5000/api/v1/category')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         handleClose();
-    //     });
-
+    //     actionSheetRef.current?.hide();
     // }, []);
+
+    useEffect(() => {
+        // fetching data
+        // fetch('http://18.218.101.141:5000/api/v1/category')
+        // .then(response => response.json())
+        // .then(data => {
+        //     // handleClose();
+        //     actionSheetRef.current?.hide()
+        // });
+
+    }, []);
 
     const handleOpened = () => {
         // fetch('http://18.218.101.141:5000/api/v1/category')
@@ -42,7 +45,7 @@ const BSheet = ({ id, contentView, data, stackOfRoute }) => {
     }
 
     return (
-        <ActionSheet id={id}  onOpen={handleOpened} onClose={handleClose} closable={isAllowClose} >
+        <ActionSheet ref={actionSheetRef} id={id} gestureEnabled={true} onOpen={handleOpened} onClose={handleClose} closable={true} closeOnPressBack={isAllowClose} >
             {mapContentView(contentView, data, stackOfRoute)}
         </ActionSheet>
     );

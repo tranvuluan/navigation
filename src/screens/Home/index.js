@@ -2,7 +2,7 @@ import { Button, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useLayoutEffect } from 'react'
 import ActionSheet, { SheetManager, SheetProps, registerSheet } from "react-native-actions-sheet";
 import { useDispatch, useSelector } from 'react-redux';
-import { showBottomSheetModal } from '../../redux/BottomSheet/actions';
+import { showBottomSheetModal, replaceBottomSheetModal } from '../../redux/BottomSheet/actions';
 import { viewTypes } from './../../ContentView/viewTypes';
 import BottomSheet from '../../ActionSheet/BottomSheet';
 

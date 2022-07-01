@@ -20,7 +20,8 @@ const View2 = ({data}) => {
       routeName: navigationRef.getCurrentRoute().name,
       modal: {
         contentView: viewTypes.VIEW3,
-        data: data3
+        data: data3,
+        isAllowClose: true
       }
     })
   ]

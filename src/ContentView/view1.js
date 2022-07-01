@@ -34,7 +34,8 @@ const View1 = ({data, viewOfRoute}) => {
       routeName: navigationRef.getCurrentRoute().name,
       modal: {
         contentView: viewTypes.VIEW2,
-        data: data2
+        data: data2,
+        isAllowClose: true
       }
     })
   }

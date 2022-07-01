@@ -13,6 +13,7 @@ const initialState = {
 const bottomSheetReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SHOW_MODAL:
+            console.log(action.payload.modal.isAllowClose)
             // get  modal by route name
             const modal = state.modals.find(modal => modal.routeName === action.payload.routeName) || {};
             const newStackModalPush = modal.stackModal || [];
@@ -36,9 +37,10 @@ const bottomSheetReducer = (state = initialState, action) => {
 
         case actionTypes.CLOSE_MODAL:
             // get  modal by route name
+            console.log("CLOSE_MODAL");
             const modalReplace = state.modals.find(modal => modal.routeName === action.payload.routeName);
             let newStackModalReplace = modalReplace.stackModal;
-            newStackModalReplace.pop();
+            // newStackModalReplace.pop();
          
             const newModalsReplace = state.modals.map(modal => {
                 if (modal.routeName === action.payload.routeName) {
@@ -53,35 +55,14 @@ const bottomSheetReducer = (state = initialState, action) => {
                 modals: newModalsReplace
             }
 
-        case actionTypes.POP_MODAL:
-            console.log('POP')
-            const modalProp = state.modals.find(modal => modal.routeName === action.payload.routeName);
-            console.log(modalProp);
-            let newStackModalPop = modalProp.stackModal;
-            if (newStackModalPop.length > 1) {
-                newStackModalPop.splice(newStackModalPop.length - 2, 1);
-                console.log('new stack modal pop: ', newStackModalPop);
-            } else {
-                newStackModalPop.pop();
-            }
-            const newModalsPop = state.modals.map(modal => {
-                if (modal.routeName === action.payload.routeName) {
-                    modal = {
-                        routeName: action.payload.routeName,
-                        stackModal: newStackModalPop
-                    }
-                }
-                return modal;
-            })
-            return {
-                modals: newModalsPop
-            }
 
         case actionTypes.ALLOW_CLOSE:
             console.log('ALLOW CLOSE')
+            console.log(action.payload.routeName);
             const modalAllowClose = state.modals.find(modal => modal.routeName === action.payload.routeName);
+            console.log(modalAllowClose);
             let newStackModalAllowClose = modalAllowClose.stackModal;
-            newStackModalAllowClose[newStackModalAllowClose.length - 1].allowClose = action.payload.allowClose;
+            newStackModalAllowClose[newStackModalAllowClose.length - 1].isAllowClose = true;
             const newModalsAllowClose = state.modals.map(modal => {
                 if (modal.routeName === action.payload.routeName) {
                     modal = {
@@ -92,8 +73,6 @@ const bottomSheetReducer = (state = initialState, action) => {
                 return modal;
             }
             )
-            console.log('newModalsAllowClose');
-            console.log(newModalsAllowClose);
             return {
                 modals: newModalsAllowClose
             }
