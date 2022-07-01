@@ -4,7 +4,7 @@ export const showBottomSheetModal = (dispatch, { routeName, modal }) => {
     dispatch({
         type: actionTypes.SHOW_MODAL,
         payload: {
-            modal: { ...modal, replace: false, selfClose: false },
+            modal: {...modal},
             routeName: routeName
         }
     })
@@ -12,24 +12,22 @@ export const showBottomSheetModal = (dispatch, { routeName, modal }) => {
 
 export const replaceBottomSheetModal = (dispatch, { routeName, modal }) => {
     dispatch({
-        type: actionTypes.SELF_CLOSE,
-        payload: {
-            routeName: routeName
-        }
-    });
-    dispatch({
         type: actionTypes.CLOSE_MODAL,
         payload: {
             routeName: routeName
         }
     });
-    dispatch({
-        type: actionTypes.SHOW_MODAL,
-        payload: {
-            modal: { ...modal, replace: true },
-            routeName: routeName
-        }
-    });
+    setTimeout(() => {
+        dispatch({
+            type: actionTypes.SHOW_MODAL,
+            payload: {
+                modal: {...modal},
+                routeName: routeName
+            }
+        });
+    }, 0);
+
+
 
 
 

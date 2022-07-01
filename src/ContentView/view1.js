@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, Button, ActivityIndicator, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { viewTypes } from './viewTypes';
@@ -6,7 +6,7 @@ import { allowCloseBottomSheetModal, showBottomSheetModal } from '../redux/Botto
 import { useDispatch, useSelector } from 'react-redux';
 import { navigationRef } from '../../App';
 
-const View1 = ({ data, viewOfRoute }) => {
+const View1 = ({ data, viewOfRoute, actionSheetRef }) => {
   const dispatch = useDispatch();
   const [fetched, setFetched] = useState();
   // const isAllowClose = useSelector(state => state.bottomsheet.modals.find(modal => modal.routeName === viewOfRoute).stackModal.pop().isAllowClose);
@@ -49,6 +49,22 @@ const View1 = ({ data, viewOfRoute }) => {
         <Text>View 1 🎉</Text>
         <Text>Code: {data.code} - {data.name} 🎉</Text>
         <Button title="Show view2" onPress={handlePress} />
+        <ScrollView style={styles.scrollView}
+          nestedScrollEnabled={true}
+          onMomentumScrollEnd={() =>
+            actionSheetRef.current?.handleChildScrollEnd()
+          }
+        >
+          <Text style={styles.text}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </Text>
+        </ScrollView>
       </>) : <ActivityIndicator />}
     </View>
   )
@@ -65,5 +81,12 @@ const styles = StyleSheet.create({
   contentContainer: {
     alignItems: 'center',
     height: 200
+  },
+  scrollView: {
+    backgroundColor: 'pink',
+    marginHorizontal: 5,
+  },
+  text: {
+    fontSize: 16,
   },
 });
