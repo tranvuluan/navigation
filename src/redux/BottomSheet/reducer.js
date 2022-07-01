@@ -77,6 +77,27 @@ const bottomSheetReducer = (state = initialState, action) => {
                 modals: newModalsPop
             }
 
+        case actionTypes.ALLOW_CLOSE:
+            console.log('ALLOW CLOSE')
+            const modalAllowClose = state.modals.find(modal => modal.routeName === action.payload.routeName);
+            let newStackModalAllowClose = modalAllowClose.stackModal;
+            newStackModalAllowClose[newStackModalAllowClose.length - 1].allowClose = action.payload.allowClose;
+            const newModalsAllowClose = state.modals.map(modal => {
+                if (modal.routeName === action.payload.routeName) {
+                    modal = {
+                        routeName: action.payload.routeName,
+                        stackModal: newStackModalAllowClose
+                    }
+                }
+                return modal;
+            }
+            )
+            console.log('newModalsAllowClose');
+            console.log(newModalsAllowClose);
+            return {
+                modals: newModalsAllowClose
+            }
+
         case actionTypes.CLEAN_BOTTOM_SHEET_MODAL:
             let newArr3 = []
             return {

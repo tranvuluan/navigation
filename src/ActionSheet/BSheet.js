@@ -34,16 +34,16 @@ const BSheet = ({ id, contentView, data, stackOfRoute }) => {
     // }, []);
 
     const handleOpened = () => {
-        fetch('http://18.218.101.141:5000/api/v1/category')
-            .then(response => response.json())
-            .then(data => {
-                handleClose();
-            });
+        // fetch('http://18.218.101.141:5000/api/v1/category')
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         handleClose();
+        //     });
     }
 
     return (
         <ActionSheet id={id}  onOpen={handleOpened} onClose={handleClose} closable={isAllowClose} >
-            {mapContentView(contentView, data)}
+            {mapContentView(contentView, data, stackOfRoute)}
         </ActionSheet>
     );
 }

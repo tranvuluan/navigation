@@ -37,12 +37,12 @@ export const closeBottomSheetModal = (dispatch, {routeName}) => {
     })
 }
 
-export const changeStatusBottomSheetModal = (dispatch, {routeName, status}) => {
+export const allowCloseBottomSheetModal = (dispatch, {routeName}) => {
     dispatch({
-        type: actionTypes.CHANGE_STATUS_MODAL,
+        type: actionTypes.ALLOW_CLOSE,
         payload: {
             routeName: routeName,
-            status: status
+            isAllowClose: true
         }
     })
 }; 

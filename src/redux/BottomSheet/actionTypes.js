@@ -1,5 +1,6 @@
 export const actionTypes = {
     SHOW_MODAL : "SHOW_MODAL",
     CLOSE_MODAL: "CLOSE_MODAL",
+    ALLOW_CLOSE: "ALLOW_CLOSE",
     CHANGE_STATUS_MODAL: "CHANGE_STATUS_MODAL"
 }

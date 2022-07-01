@@ -1,13 +1,28 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { viewTypes } from './viewTypes';
-import { showBottomSheetModal } from '../redux/BottomSheet/actions';
-import {useDispatch} from 'react-redux';
+import { allowCloseBottomSheetModal, showBottomSheetModal } from '../redux/BottomSheet/actions';
+import {useDispatch, useSelector} from 'react-redux';
 import { navigationRef } from '../../App';
 
-const View1 = ({data}) => {
+const View1 = ({data, viewOfRoute}) => {
   const dispatch = useDispatch();
+  // const isAllowClose = useSelector(state => state.bottomsheet.modals.find(modal => modal.routeName === viewOfRoute).stackModal.pop().isAllowClose);
+
+
+    useEffect(() => {
+        // fetching data
+        fetch('http://18.218.101.141:5000/api/v1/category')
+        .then(response => response.json())
+        .then(data => {
+          console.log('fetched')
+          allowCloseBottomSheetModal(dispatch, {
+            routeName: viewOfRoute
+          })
+        });
+
+    }, []);
 
   const data2 = {
     code: 'SG',
