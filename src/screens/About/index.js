@@ -1,8 +1,22 @@
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, {useState, useLayoutEffect, useEffect} from 'react'
 import { useNavigation } from '@react-navigation/native';
+import { changeRoute } from '../../redux/Route/actions';
+import { useDispatch } from 'react-redux';
 
-const About = ({navigation}) => {
+const About = ({navigation, route}) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+        changeRoute(dispatch, {
+          currentRoute: route.name
+        })
+    });
+
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <Text>About</Text>

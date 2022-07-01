@@ -1,14 +1,18 @@
 import { actionTypes } from "./actionTypes"
-
-
 const initialState = {
     preRoute: null,
     currentRoute: 'Home'
 }
 
 const routeReducer = (state = initialState, action) => {
-    switch (actionTypes.type) {
-        case actionTypes.SET_PRE_ROUTE:
+    switch (action.type) {
+        case actionTypes.CHANGE_ROUTE:
+            return {
+                ...state,
+                currentRoute: action.payload.currentRoute
+            }
+        default:
+            return state;
     }
 }
 

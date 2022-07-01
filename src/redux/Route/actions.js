@@ -1,8 +1,9 @@
-export const changeRoute = (dispatch, {preRoute, currentRoute}) => {
+import { actionTypes } from "./actionTypes";
+
+export const changeRoute = (dispatch, { currentRoute}) => {
     dispatch({
         type: actionTypes.CHANGE_ROUTE,
         payload: {
-            preRoute: preRoute,
             currentRoute: currentRoute
         }
     });

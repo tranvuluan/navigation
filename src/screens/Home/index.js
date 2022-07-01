@@ -5,14 +5,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { showBottomSheetModal, replaceBottomSheetModal } from '../../redux/BottomSheet/actions';
 import { viewTypes } from './../../ContentView/viewTypes';
 import BottomSheet from '../../ActionSheet/BottomSheet';
+import { changeRoute } from '../../redux/Route/actions';
 
 const Home = ({ navigation, route }) => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+        changeRoute(dispatch, {
+          currentRoute: route.name
+        })
+    });
+
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
 
   const data1 = {
     code: 'VN',
     name: 'Viet Nam'
   }
+
 
   const handlePress = () => {
     showBottomSheetModal(dispatch, {
