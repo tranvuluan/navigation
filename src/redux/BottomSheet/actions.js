@@ -28,9 +28,6 @@ export const replaceBottomSheetModal = (dispatch, { routeName, modal }) => {
     }, 0);
 
 
-
-
-
 };
 
 export const closeBottomSheetModal = (dispatch, { routeName }) => {

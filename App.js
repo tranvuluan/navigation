@@ -6,12 +6,10 @@ import HomeScreen from './src/screens/Home';
 import AboutScreen from './src/screens/About';
 import { Provider, useDispatch } from 'react-redux';
 import store from './src/redux/store';
-import BottomSheet from './src/ActionSheet/BottomSheet';
+import BottomSheet from './src/utils/BottomSheet/BottomSheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { changeRoute } from './src/redux/Route/actions';
 const Stack = createNativeStackNavigator();
-// import "./src/ActionSheet/MySheet";
-// import "./src/ActionSheet/Sheet2";
 
 
 

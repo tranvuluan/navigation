@@ -1,19 +1,17 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 
 
-const View4 = ({data}) => {
-  const navigation = useNavigation();
+const View3 = ({ data }) => {
   return (
     <View style={styles.contentContainer}>
-      <Text>View 4 🎉</Text>
+      <Text>View 3 🎉</Text>
       <Text>Code: {data.code} - {data.name} 🎉</Text>
     </View>
   )
 }
 
-export default View4
+export default View3
 
 const styles = StyleSheet.create({
   container: {
@@ -22,7 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
   },
   contentContainer: {
-    flex: 1,
+    height: 200,
     alignItems: 'center',
   },
-});1
+});

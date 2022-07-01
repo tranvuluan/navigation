@@ -1,15 +1,10 @@
 import { StyleSheet, Text, View, Button, ActivityIndicator, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { viewTypes } from './viewTypes';
-import { allowCloseBottomSheetModal, showBottomSheetModal } from '../redux/BottomSheet/actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { navigationRef } from '../../App';
+import { AllowCloseBottomSheet, viewTypes } from '../';
+
 
 const View1 = ({ data, viewOfRoute, actionSheetRef }) => {
-  const dispatch = useDispatch();
   const [fetched, setFetched] = useState();
-  // const isAllowClose = useSelector(state => state.bottomsheet.modals.find(modal => modal.routeName === viewOfRoute).stackModal.pop().isAllowClose);
 
 
   useEffect(() => {
@@ -18,9 +13,7 @@ const View1 = ({ data, viewOfRoute, actionSheetRef }) => {
       .then(response => response.json())
       .then(data => {
         console.log('fetched')
-        allowCloseBottomSheetModal(dispatch, {
-          routeName: viewOfRoute
-        });
+        AllowCloseBottomSheet(viewTypes.VIEW1);
         setFetched(true);
       });
 
@@ -32,17 +25,16 @@ const View1 = ({ data, viewOfRoute, actionSheetRef }) => {
   }
 
   const handlePress = () => {
-    showBottomSheetModal(dispatch, {
-      routeName: navigationRef.getCurrentRoute().name,
-      modal: {
-        contentView: viewTypes.VIEW2,
-        data: data2,
-        isAllowClose: true
-      }
-    })
+    // showBottomSheetModal(dispatch, {
+    //   routeName: navigationRef.getCurrentRoute().name,
+    //   modal: {
+    //     contentView: viewTypes.VIEW2,
+    //     data: data2,
+    //     isAllowClose: true
+    //   }
+    // })
   }
 
-  const navigation = useNavigation();
   return (
     <View style={styles.contentContainer}>
       {fetched ? (<>

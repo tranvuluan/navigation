@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useLayoutEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import BSheet from './BSheet';
 
 const BottomSheet = () => {

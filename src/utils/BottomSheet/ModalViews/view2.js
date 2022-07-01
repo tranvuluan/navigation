@@ -1,30 +1,23 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
-import { replaceBottomSheetModal } from '../redux/BottomSheet/actions';
-import { viewTypes } from './viewTypes';
-import { navigationRef } from '../../App';
 
 const View2 = ({data}) => {
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
 
   const data3 = {
     code: 'US',
     name: 'United States'
   }
 
-  const handleReplace = () => [
-    replaceBottomSheetModal(dispatch, {
-      routeName: navigationRef.getCurrentRoute().name,
-      modal: {
-        contentView: viewTypes.VIEW3,
-        data: data3,
-        isAllowClose: true
-      }
-    })
-  ]
+  // const handleReplace = () => {
+  //   replaceBottomSheetModal(dispatch, {
+  //     routeName: navigationRef.getCurrentRoute().name,
+  //     modal: {
+  //       contentView: viewTypes.VIEW3,
+  //       data: data3,
+  //       isAllowClose: true
+  //     }
+  //   })
+  // }
 
   return (
     <View style={styles.contentContainer}>

@@ -1,11 +1,14 @@
 import { Button, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useLayoutEffect } from 'react'
-import ActionSheet, { SheetManager, SheetProps, registerSheet } from "react-native-actions-sheet";
-import { useDispatch, useSelector } from 'react-redux';
-import { showBottomSheetModal, replaceBottomSheetModal } from '../../redux/BottomSheet/actions';
-import { viewTypes } from './../../ContentView/viewTypes';
-import BottomSheet from '../../ActionSheet/BottomSheet';
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
 import { changeRoute } from '../../redux/Route/actions';
+import {
+  ShowBottomSheet,
+  ReplaceButtomSheet,
+  viewTypes,
+  mapContentView
+} from '../../utils/BottomSheet';
+ 
 
 const Home = ({ navigation, route }) => {
   const dispatch = useDispatch();
@@ -28,14 +31,7 @@ const Home = ({ navigation, route }) => {
 
 
   const handlePress = () => {
-    showBottomSheetModal(dispatch, {
-      routeName: route.name,
-      modal: {
-        contentView: viewTypes.VIEW1,
-        data: data1,
-        isAllowClose: false
-      }
-    })
+    ShowBottomSheet('Home', viewTypes.VIEW1, false, data1);
   }
 
 
