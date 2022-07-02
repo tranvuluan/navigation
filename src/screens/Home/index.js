@@ -29,7 +29,7 @@ const Home = ({ navigation, route }) => {
 
 
   const handlePress = () => {
-    ShowBottomSheet('Home', viewTypes.VIEW1, false, data1, 'push');
+    ShowBottomSheet('Home', viewTypes.VIEW1, false, data1, 'push'); // (routeName, contentView, isAllowClose, data, typeOfShow 'push || replace');
   }
 
 
