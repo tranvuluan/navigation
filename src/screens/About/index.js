@@ -3,6 +3,10 @@ import React, {useState, useLayoutEffect, useEffect} from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { changeRoute } from '../../redux/Route/actions';
 import { useDispatch } from 'react-redux';
+import {
+  ShowBottomSheet,
+  viewTypes,
+} from '../../utils/BottomSheet';
 
 const About = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -17,10 +21,20 @@ const About = ({navigation, route}) => {
     return unsubscribe;
   }, [navigation]);
 
+  const data1 = {
+    code: 'JP',
+    name: 'Japan'
+  }
+
+  const handlePress = () => {
+    ShowBottomSheet(route.name, viewTypes.VIEW1, false, data1, 'push'); // (routeName, contentView, isAllowClose, data, typeOfShow 'push || replace');
+  }
+
   return (
     <View style={styles.container}>
       <Text>About</Text>
      <Button title="Go to Home" onPress={() => navigation.navigate('Home')}/>
+     <Button title="show" onPress={handlePress} />
     </View>
   )
 }

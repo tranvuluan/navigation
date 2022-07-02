@@ -4,16 +4,18 @@ import BSheet from './BSheet';
 
 const BottomSheet = () => {
     const bottomsheet = useSelector(state => state.bottomsheet);
-    console.log('BottomSheet: ', bottomsheet);
     const modals = bottomsheet.modals;
     const currentRoute = useSelector(state => state.routeState.currentRoute);
     const modal = modals.find(modal => modal.routeName === currentRoute);
     const stackModal = modal ? modal.stackModal : null;
+    console.log('-------------BottomSheet ---------');
+    console.log(bottomsheet);
+    console.log('-------------Route ---------');
+    console.log(currentRoute);
     console.log('-------------Stack ---------');
     console.log(stackModal);
 
-    console.log('-------------Route ---------');
-    console.log(currentRoute);
+
 
 
     return (

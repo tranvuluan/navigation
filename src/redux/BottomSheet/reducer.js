@@ -14,27 +14,37 @@ const initialState = {
 const bottomSheetReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SHOW_MODAL:
-            console.log(action.payload.modal.isAllowClose)
             // get  modal by route name
-            const modal = state.modals.find(modal => modal.routeName === action.payload.routeName) || {};
-            const newStackModalPush = modal.stackModal || [];
-            const modalPayload = {
-                ...action.payload.modal,
-                id: newStackModalPush.length + 1
-            }
-
-            newStackModalPush.push(modalPayload);
-            const newModalsPush = state.modals.map(modal => {
-                if (modal.routeName === action.payload.routeName) {
-                    modal = {
-                        routeName: action.payload.routeName,
-                        stackModal: newStackModalPush
-                    }
+            const modal = state.modals.find(modal => modal.routeName === action.payload.routeName);
+            let newModals = [...state.modals];
+            let newStackModal = [];
+            if (modal) {
+                newStackModal = modal.stackModal;
+                const modalPayload = {
+                    ...action.payload.modal,
+                    id: newStackModal.length + 1
                 }
-                return modal;
-            })
+                newStackModal.push(modalPayload);
+                newModals = state.modals.map(modal => {
+                    if (modal.routeName === action.payload.routeName) {
+                        modal = {
+                            routeName: action.payload.routeName,
+                            stackModal: newStackModal
+                        }
+                    }
+                    return modal;
+                })
+            } else {
+                const modalPayload = {
+                    ...action.payload.modal,
+                    id: 1
+                }
+                newStackModal.push(modalPayload); 
+                newModals = [...newModals, { routeName: action.payload.routeName, stackModal: newStackModal }];
+            }
+            
             return {
-                modals: newModalsPush
+                modals: newModals
             }
 
  
