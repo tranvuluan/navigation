@@ -1,13 +1,15 @@
 import { actionTypes } from "./actionTypes"
 
 export const showBottomSheetModal = (dispatch, { routeName, modal }) => {
-    dispatch({
-        type: actionTypes.SHOW_MODAL,
-        payload: {
-            modal: {...modal},
-            routeName: routeName
-        }
-    })
+    setTimeout(() => {
+        dispatch({
+            type: actionTypes.SHOW_MODAL,
+            payload: {
+                modal: { ...modal },
+                routeName: routeName
+            }
+        })
+    }, 0);
 }
 
 export const replaceBottomSheetModal = (dispatch, { routeName, modal }) => {
@@ -21,7 +23,7 @@ export const replaceBottomSheetModal = (dispatch, { routeName, modal }) => {
         dispatch({
             type: actionTypes.SHOW_MODAL,
             payload: {
-                modal: {...modal},
+                modal: { ...modal },
                 routeName: routeName
             }
         });

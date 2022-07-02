@@ -27,7 +27,7 @@ const About = ({navigation, route}) => {
   }
 
   const handlePress = () => {
-    ShowBottomSheet(route.name, viewTypes.VIEW1, false, data1, 'push'); // (routeName, contentView, isAllowClose, data, typeOfShow 'push || replace');
+    ShowBottomSheet(route.name, viewTypes.VIEW4, true, data1, 'push'); // (routeName, contentView, isAllowClose, data, typeOfShow 'push || replace');
   }
 
   return (

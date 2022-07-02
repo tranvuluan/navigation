@@ -15,12 +15,9 @@ const BottomSheet = () => {
     console.log('-------------Stack ---------');
     console.log(stackModal);
 
-
-
-
     return (
         <>
-            {stackModal && stackModal.map((bs, index) => <BSheet  key={index} id={bs.id} isAllowClose={bs.isAllowClose} stackOfRoute={modal.routeName} contentView={bs.contentView} data={bs.data} />)}
+            {stackModal && stackModal.map((bs, index) => <BSheet key={index} id={bs.id} isAllowClose={bs.isAllowClose} stackOfRoute={modal.routeName} contentView={bs.contentView} data={bs.data} />)}
         </>
     )
 }
