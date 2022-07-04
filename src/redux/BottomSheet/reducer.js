@@ -50,7 +50,6 @@ const bottomSheetReducer = (state = initialState, action) => {
  
         case actionTypes.CLOSE_MODAL:
             // get  modal by route name
-            console.log("CLOSE_MODAL");
             const modalReplace = state.modals.find(modal => modal.routeName === action.payload.routeName);
             let newStackModalReplace = modalReplace.stackModal;
             newStackModalReplace.pop();
@@ -69,10 +68,7 @@ const bottomSheetReducer = (state = initialState, action) => {
 
 
         case actionTypes.ALLOW_CLOSE:
-            console.log('ALLOW CLOSE')
-            console.log(action.payload.routeName);
             const modalAllowClose = state.modals.find(modal => modal.routeName === action.payload.routeName);
-            console.log(modalAllowClose);
             let newStackModalAllowClose = modalAllowClose.stackModal;
             newStackModalAllowClose[newStackModalAllowClose.length - 1].isAllowClose = true;
             const newModalsAllowClose = state.modals.map(modal => {

@@ -6,7 +6,7 @@ import store from '../../redux/store';
 
 
 
-const ShowBottomSheet = (routeName, contentView, isAllowClose, data, typeOfShow) => {
+const ShowBottomSheet = (routeName, contentView, data, typeOfShow, isAllowClose) => {
     const modal = {
         contentView: contentView,
         isAllowClose: isAllowClose,

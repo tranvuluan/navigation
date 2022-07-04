@@ -11,7 +11,7 @@ const View4 = ({ data, viewOfRoute, actionSheetRef }) => {
       code: 'SG',
       name: 'Singapore'
     }
-    ShowBottomSheet('Home', viewTypes.VIEW5, true, data, 'push');
+    ShowBottomSheet('Home', viewTypes.VIEW5, data, 'push', true);
   }
 
   return (

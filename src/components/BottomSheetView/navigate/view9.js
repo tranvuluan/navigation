@@ -1,29 +1,29 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { ShowBottomSheet, viewTypes } from '../../../utils/BottomSheet';
 
-const View2 = ({ data, viewOfRoute, actionSheetRef }) => {
-  const navigation = useNavigation();
-  const data3 = {
+
+const View9 = ({ data, viewOfRoute, actionSheetRef }) => {
+
+  const data1 = {
     code: 'US',
     name: 'United States'
   }
 
-  const handleReplace = () => {
-    ShowBottomSheet('Home', viewTypes.VIEW3, data3, 'replace', true);
+  const handlePress = () => {
+    ShowBottomSheet('Home', viewTypes.VIEW10, data1, 'push', true);
   }
 
   return (
     <View style={styles.contentContainer}>
-      <Text>View 2 🎉</Text>
+      <Text>View 9 🎉</Text>
       <Text>Code: {data.code} - {data.name} 🎉</Text>
-      <Button title="Replace" onPress={handleReplace} />
+      <Button title="Push" onPress={handlePress} />
     </View>
   )
 }
 
-export default View2
+export default View9
 
 const styles = StyleSheet.create({
   container: {
@@ -32,8 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
   },
   contentContainer: {
-    paddingTop: 10,
+    height: 200,
     alignItems: 'center',
-    height: 250
   },
 });

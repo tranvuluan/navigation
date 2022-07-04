@@ -35,15 +35,19 @@ const Home = ({ navigation, route }) => {
     console.log('Curernt Options: ' + currentOption);
     switch (option) {
       case labelButtons[0]:
-        ShowBottomSheet(route.name, viewTypes.VIEW1, true, data1, 'replace'); // (routeName, contentView, isAllowClose, data, typeOfShow 'push || replace');
+        ShowBottomSheet(route.name, viewTypes.VIEW1, data1, 'replace', true); // (routeName, contentView, data, typeOfShow 'push || replace', isAllowClose);
         break;
 
       case labelButtons[1]:
-        ShowBottomSheet(route.name, viewTypes.VIEW4, true, data1, 'push'); // (routeName, contentView, isAllowClose, data, typeOfShow 'push || replace');
+        ShowBottomSheet(route.name, viewTypes.VIEW4, data1, 'push', true); // (routeName, contentView, data, typeOfShow 'push || replace', isAllowClose);
         break;
 
       case labelButtons[2]:
-        ShowBottomSheet(route.name, viewTypes.VIEW6, true, data1, 'push'); // (routeName, contentView, isAllowClose, data, typeOfShow 'push || replace');
+        ShowBottomSheet(route.name, viewTypes.VIEW6, data1, 'push', false); // (routeName, contentView, data, typeOfShow 'push || replace', isAllowClose);
+        break;
+
+      case labelButtons[3]:
+        ShowBottomSheet(route.name, viewTypes.VIEW9, data1, 'push', true); // (routeName, contentView, data, typeOfShow 'push || replace', isAllowClose);
         break;
 
       default:
@@ -54,7 +58,7 @@ const Home = ({ navigation, route }) => {
 
 
   const handlePress = () => {
-    ShowBottomSheet(route.name, viewTypes.VIEW1, false, data1, 'push'); // (routeName, contentView, isAllowClose, data, typeOfShow 'push || replace');
+    ShowBottomSheet(route.name, viewTypes.VIEW1, data1, 'push', false); // (routeName, contentView, data, typeOfShow 'push || replace', isAllowClose);
   }
 
   const labelButtons = ['Replace', 'Push', 'Prevent close', 'Navigate'];

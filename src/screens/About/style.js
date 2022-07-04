@@ -12,6 +12,20 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         justifyContent: 'center',
         borderWidth: 1
+    },
+
+    scrollView: {
+    },
+
+    cardItem: {
+        marginTop: 5,
+        height: 150
+    },
+    button: {
+    },
+    image: {
+        width: 60,
+        height: 60
     }
 
 });

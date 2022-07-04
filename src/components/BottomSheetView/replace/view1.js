@@ -11,7 +11,7 @@ const View1 = ({ data, viewOfRoute, actionSheetRef }) => {
   }
 
   const handlePress = () => {
-    ShowBottomSheet('Home', viewTypes.VIEW2, true, data2, 'replace');
+    ShowBottomSheet('Home', viewTypes.VIEW2, data2, 'replace', true);
   }
 
   return (

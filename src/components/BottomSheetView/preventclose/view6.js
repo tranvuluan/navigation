@@ -16,6 +16,7 @@ const View6 = ({ data, viewOfRoute, actionSheetRef }) => {
       AllowCloseBottomSheet(viewOfRoute);
       setFetched(true);
     })
+    .catch(err => reject(err));
 
   }, []);
 
@@ -26,7 +27,7 @@ const View6 = ({ data, viewOfRoute, actionSheetRef }) => {
   }
 
   const handlePress = () => {
-    ShowBottomSheet('Home', viewTypes.VIEW2, true, dataView, 'push');
+    ShowBottomSheet('Home', viewTypes.VIEW2, dataView, 'push', true);
   }
 
   return (

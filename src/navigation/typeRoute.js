@@ -1,4 +1,5 @@
 export const ROUTE = {
     HOME: "Home",
-    ABOUT: "About"
+    ABOUT: "About",
+    CATEGORY: "Category"
 }
