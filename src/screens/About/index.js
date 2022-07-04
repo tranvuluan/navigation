@@ -34,7 +34,7 @@ const About = ({ navigation, route }) => {
   }
 
   const handlePress = () => {
-    ShowBottomSheet(route.name, viewTypes.VIEW11, true, data1, 'push'); // (routeName, contentView, isAllowClose, data, typeOfShow 'push || replace');
+    ShowBottomSheet(route.name, viewTypes.VIEW11, data1, 'push', true); // (routeName, contentView, data, typeOfShow 'push || replace', isAllowClose);
   }
 
   return (
@@ -47,6 +47,7 @@ const About = ({ navigation, route }) => {
         <Image style={styles.image} source={{ uri: "https://reactjs.org/logo-og.png" }} />
       </View>
       <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+      <Button title="Go to Category" onPress={() => navigation.navigate('Category')} />
       <Button title="show" onPress={handlePress} />
     </View>
   )

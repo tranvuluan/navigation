@@ -9,10 +9,6 @@ const View11 = ({ data, viewOfRoute, actionSheetRef }) => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
 
-    const handlePress = () => {
-        navigation.navigate('Home');
-    }
-
     const item = {
         id: 1,
         name: 'Item 1',
@@ -29,7 +25,8 @@ const View11 = ({ data, viewOfRoute, actionSheetRef }) => {
             <Text>View 11 🎉</Text>
             <Text>Code: {data.code} - {data.name} 🎉</Text>
             <Button title="AddToCart" onPress={handleAddToCart} />
-            <Button title="Go to Home" onPress={handlePress} />
+            <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+            <Button title="Go to Category" onPress={() => navigation.navigate('Category')} />
         </View>
     )
 }

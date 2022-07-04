@@ -40,10 +40,22 @@ const AllowCloseBottomSheet = (routeName) => {
     });
 }
 
+const checkOpenBottomSheet = (routeName, contentView) => {
+    const modals = store.getState().bottomsheet.modals;
+    console.log(modals);
+    const getModal = modals.find(modal => modal.routeName === routeName);
+    if (!getModal) return false;
+    const stackModal = getModal.stackModal;
+    const getBottomSheet = stackModal.find(bottomSheet => bottomSheet.contentView === contentView);
+    if (!getBottomSheet) return false;
+    return getBottomSheet;
+}
+
 export {
     ShowBottomSheet,
     CloseBottomSheet,
     AllowCloseBottomSheet,
+    checkOpenBottomSheet,
     viewTypes,
     mapContentView
 }

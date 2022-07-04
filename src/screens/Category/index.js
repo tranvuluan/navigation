@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { changeRoute } from '../../redux/Route/actions';
 import { useDispatch } from 'react-redux';
 import {
+  checkOpenBottomSheet,
   ShowBottomSheet,
   viewTypes,
 } from '../../utils/BottomSheet';
@@ -27,14 +28,16 @@ const Category = ({ navigation, route }) => {
   }
 
   const handlePress = () => {
-    ShowBottomSheet(route.name, viewTypes.VIEW11, true, data2, 'push'); // (routeName, contentView, isAllowClose, data, typeOfShow 'push || replace');
+    const bottomsheet = checkOpenBottomSheet('About', viewTypes.VIEW11);
+    alert(JSON.stringify(bottomsheet));
+    console.log(bottomsheet);
   }
 
   return (
     <View style={styles.container}>
       <Text>Category</Text>
       <Button title="Go to About" onPress={() => navigation.navigate('About')} />
-      <Button title="show" onPress={handlePress} />
+      <Button title="Check bottomsheet" onPress={handlePress} />
     </View>
   )
 }

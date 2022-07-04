@@ -37,9 +37,9 @@ const MainBottomTabNavigator = () => {
                             ? 'home'
                             : 'home-circle-outline';
                     } else if (route.name === ROUTE.CATEGORY) {
-                        iconName = focused ? 'home' : 'home';
+                        iconName = focused ? 'shape' : 'shape-outline';
                     } else  {
-                        iconName = focused ? 'home' : 'home';
+                        iconName = focused ? 'account' : 'account-outline';
                     }
                     // You can return any component that you like here!
                     return <MaterialCommunityIcons name={iconName} color={color} size={size} />
