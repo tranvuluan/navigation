@@ -1,12 +1,12 @@
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
-import React, {useState, useLayoutEffect, useEffect} from 'react'
-import { useNavigation } from '@react-navigation/native';
+import { Button, Text, View } from 'react-native'
+import React, { useEffect} from 'react'
 import { changeRoute } from '../../redux/Route/actions';
 import { useDispatch } from 'react-redux';
 import {
   ShowBottomSheet,
   viewTypes,
 } from '../../utils/BottomSheet';
+import styles from './style';
 
 const About = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -41,17 +41,3 @@ const About = ({navigation, route}) => {
 
 export default About;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    justifyContent: 'center',
-    borderWidth: 1
-  }
-
-});

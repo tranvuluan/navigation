@@ -1,15 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useNavigationContainerRef, NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SheetProvider } from "react-native-actions-sheet";
-import HomeScreen from './src/screens/Home';
-import AboutScreen from './src/screens/About';
-import { Provider, useDispatch } from 'react-redux';
+import React from 'react';
+import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
+import { Provider } from 'react-redux';
 import store from './src/redux/store';
 import BottomSheet from './src/components/BottomSheet/BottomSheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { changeRoute } from './src/redux/Route/actions';
-const Stack = createNativeStackNavigator();
+import MainNavigator from './src/navigation';
 
 
 
@@ -37,33 +32,8 @@ const App = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Provider store={store}>
-        <NavigationContainer ref={navigationRef}
-          onReady={() => { }}
-
-          onStateChange={() => {
-            // const previousRouteName = routeNameRef.current
-            // const currentRouteName = navigationRef.current.getCurrentRoute().name
-
-            // if (previousRouteName !== currentRouteName) {
-            //   // Do something here with it
-            // }
-
-            // // Save the current route name for later comparision
-            // routeNameRef.current = currentRouteName
-          }}
-        >
-          <Stack.Navigator initialRouteName='Home'>
-            <Stack.Screen name="Home"
-              component={HomeScreen}
-              options={{
-                title: 'Test App',
-                headerStyle: {
-                  backgroundColor: 'tomato'
-                }
-              }}
-            />
-            <Stack.Screen name="About" component={AboutScreen} />
-          </Stack.Navigator>
+        <NavigationContainer ref={navigationRef} >
+          <MainNavigator />
           <BottomSheet />
         </NavigationContainer>
       </Provider>
