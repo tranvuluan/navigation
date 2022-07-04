@@ -11,7 +11,7 @@ const View6 = ({ data, viewOfRoute, actionSheetRef }) => {
       setTimeout(() => {
         console.log('timeout');
         resolve();
-      }, 2000);
+      }, 3500);
     }).then(res => {
       AllowCloseBottomSheet(viewOfRoute);
       setFetched(true);
