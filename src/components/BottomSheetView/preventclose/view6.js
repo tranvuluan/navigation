@@ -1,30 +1,32 @@
 import { StyleSheet, Text, View, Button, ActivityIndicator, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react';
-import { AllowCloseBottomSheet, ShowBottomSheet, viewTypes } from './../../utils/BottomSheet';
+import { AllowCloseBottomSheet, ShowBottomSheet, viewTypes } from '../../../utils/BottomSheet';
 
-const View1 = ({ data, viewOfRoute, actionSheetRef }) => {
+const View6 = ({ data, viewOfRoute, actionSheetRef }) => {
   const [fetched, setFetched] = useState();
-
 
   useEffect(() => {
     // fetching data
-    fetch('http://18.218.101.141:5000/api/v1/category')
-      .then(response => response.json())
-      .then(data => {
-        console.log('fetched')
-        AllowCloseBottomSheet(viewOfRoute);
-        setFetched(true);
-      });
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('timeout');
+        resolve();
+      }, 2000);
+    }).then(res => {
+      AllowCloseBottomSheet(viewOfRoute);
+      setFetched(true);
+    })
 
   }, []);
 
-  const data2 = {
+
+  const dataView = {
     code: 'SG',
     name: 'Singapore'
   }
 
   const handlePress = () => {
-    ShowBottomSheet('Home', viewTypes.VIEW2, true, data2, 'push');
+    ShowBottomSheet('Home', viewTypes.VIEW2, true, dataView, 'push');
   }
 
   return (
@@ -54,7 +56,7 @@ const View1 = ({ data, viewOfRoute, actionSheetRef }) => {
   )
 }
 
-export default View1
+export default View6
 
 const styles = StyleSheet.create({
   container: {
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     alignItems: 'center',
-    height: 200
+    height: 350
   },
   scrollView: {
     backgroundColor: 'pink',

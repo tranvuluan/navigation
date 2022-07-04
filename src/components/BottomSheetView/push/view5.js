@@ -10,7 +10,6 @@ const View5 = ({ data, viewOfRoute, actionSheetRef }) => {
     <View style={styles.contentContainer}>
       <Text>View 5 🎉</Text>
       <Text>Code: {data.code} - {data.name} 🎉</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
     </View>
   )
 }

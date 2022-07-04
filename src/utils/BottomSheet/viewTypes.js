@@ -3,5 +3,6 @@ export const viewTypes = {
     VIEW2: 'view2',
     VIEW3: 'view3',
     VIEW4: 'view4',
-    VIEW5: 'view5'
+    VIEW5: 'view5',
+    VIEW6: 'view6'
 }

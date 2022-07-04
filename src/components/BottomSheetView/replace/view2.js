@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { ShowBottomSheet, viewTypes } from '../../utils/BottomSheet';
+import { ShowBottomSheet, viewTypes } from '../../../utils/BottomSheet';
 
 const View2 = ({ data, viewOfRoute, actionSheetRef }) => {
   const navigation = useNavigation();
@@ -18,7 +18,6 @@ const View2 = ({ data, viewOfRoute, actionSheetRef }) => {
     <View style={styles.contentContainer}>
       <Text>View 2 🎉</Text>
       <Text>Code: {data.code} - {data.name} 🎉</Text>
-      <Button title="Go to About" onPress={() => navigation.navigate('About')} />
       <Button title="Replace" onPress={handleReplace} />
     </View>
   )
@@ -27,13 +26,14 @@ const View2 = ({ data, viewOfRoute, actionSheetRef }) => {
 export default View2
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 24,
-        backgroundColor: 'grey',
-    },
-    contentContainer: {
-        alignItems: 'center',
-        height: 150
-    },
+  container: {
+    flex: 1,
+    padding: 24,
+    backgroundColor: 'grey',
+  },
+  contentContainer: {
+    paddingTop: 10,
+    alignItems: 'center',
+    height: 250
+  },
 });
