@@ -24,9 +24,11 @@ const View11 = ({ data, viewOfRoute, actionSheetRef }) => {
         <View style={styles.contentContainer}>
             <Text>View 11 🎉</Text>
             <Text>Code: {data.code} - {data.name} 🎉</Text>
-            <Button title="AddToCart" onPress={handleAddToCart} />
-            <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-            <Button title="Go to Category" onPress={() => navigation.navigate('Category')} />
+            <View style={styles.buttonList}>
+                <Button style={styles.button} title="AddToCart" onPress={handleAddToCart} />
+                <Button style={styles.button} title="Go to Home" onPress={() => navigation.navigate('Home')} />
+                <Button style={styles.button} title="Go to Category" onPress={() => navigation.navigate('Category')} />
+            </View>
         </View>
     )
 }
@@ -34,13 +36,15 @@ const View11 = ({ data, viewOfRoute, actionSheetRef }) => {
 export default View11
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 24,
-        backgroundColor: 'grey',
-    },
+
     contentContainer: {
-        height: 200,
+        height: 250,
         alignItems: 'center',
     },
+
+    buttonList: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+    }
 });

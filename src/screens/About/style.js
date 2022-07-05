@@ -5,13 +5,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
-    },
-    input: {
-        height: 40,
-        borderColor: 'gray',
-        justifyContent: 'center',
-        borderWidth: 1
     },
 
     scrollView: {
@@ -19,10 +12,18 @@ const styles = StyleSheet.create({
 
     cardItem: {
         marginTop: 5,
-        height: 150
+        height: 150,
     },
+
+    buttonGroup: {
+        flex: 1,
+        flexDirection:'column',
+    },
+
     button: {
+        marginBottom: 20
     },
+
     image: {
         width: 60,
         height: 60

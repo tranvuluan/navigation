@@ -7,6 +7,7 @@ import {
   viewTypes,
 } from '../../utils/BottomSheet';
 import styles from './style';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const About = ({ navigation, route }) => {
   const dispatch = useDispatch();
@@ -39,16 +40,23 @@ const About = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <Text>About</Text>
       <View style={styles.cardItem}>
         <Text>id: {item.id}</Text>
         <Text>name: {item.name}</Text>
         <Text>price: {item.price}</Text>
         <Image style={styles.image} source={{ uri: "https://reactjs.org/logo-og.png" }} />
       </View>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go to Category" onPress={() => navigation.navigate('Category')} />
-      <Button title="show" onPress={handlePress} />
+      <View style={styles.buttonGroup}>
+        <TouchableOpacity style={styles.button}>
+          <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Button title="Go to Category" onPress={() => navigation.navigate('Category')} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Button title="show" onPress={handlePress} />
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }

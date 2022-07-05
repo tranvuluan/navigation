@@ -35,7 +35,6 @@ const Category = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Category</Text>
       <Button title="Go to About" onPress={() => navigation.navigate('About')} />
       <Button title="Check bottomsheet" onPress={handlePress} />
     </View>
