@@ -8,10 +8,6 @@ const BottomSheet = () => {
     const currentRoute = useSelector(state => state.routeState.currentRoute);
     const modal = modals.find(modal => modal.routeName === currentRoute);
     const stackModal = modal ? modal.stackModal : null;
-    // console.log('-------------Route ---------');
-    // console.log(currentRoute);
-    // console.log('-------------Stack ---------');
-    // console.log(stackModal);
 
     return (
         <>

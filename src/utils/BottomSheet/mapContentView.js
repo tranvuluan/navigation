@@ -9,9 +9,8 @@ import View7 from '../../components/BottomSheetView/preventclose/view7';
 import View8 from '../../components/BottomSheetView/preventclose/view8';
 import View9 from '../../components/BottomSheetView/navigate/view9';
 import View10 from '../../components/BottomSheetView/navigate/view10';
-
-import { viewTypes } from './viewTypes';
 import View11 from '../../components/BottomSheetView/about/view11';
+import { viewTypes } from './viewTypes';
 
 
 export const mapContentView = (contentView, data, viewOfRoute, actionSheetRef) => {

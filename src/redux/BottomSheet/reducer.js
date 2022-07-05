@@ -1,6 +1,5 @@
 import { ROUTE } from "../../navigation/typeRoute";
 import { actionTypes } from "./actionTypes";
-import { SheetManager } from "react-native-actions-sheet";
 
 const initialState = {
     modals: [
