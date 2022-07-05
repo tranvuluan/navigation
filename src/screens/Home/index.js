@@ -32,7 +32,6 @@ const Home = ({ navigation, route }) => {
   console.log('load');
 
   const handleChooseOption = (option) => {
-    console.log('Curernt Options: ' + currentOption);
     switch (option) {
       case labelButtons[0]:
         ShowBottomSheet(route.name, viewTypes.VIEW1, data1, 'replace', true); // (routeName, contentView, data, typeOfShow 'push || replace', isAllowClose);
@@ -56,11 +55,6 @@ const Home = ({ navigation, route }) => {
     setCurrentOption(option);
   }
 
-
-  const handlePress = () => {
-    ShowBottomSheet(route.name, viewTypes.VIEW1, data1, 'push', false); // (routeName, contentView, data, typeOfShow 'push || replace', isAllowClose);
-  }
-
   const labelButtons = ['Replace', 'Push', 'Prevent close', 'Navigate'];
 
 
@@ -72,9 +66,6 @@ const Home = ({ navigation, route }) => {
         selectedValue={currentOption}
         setSelectedValue={handleChooseOption}
       />
-      {/* <Button title="Go to about" onPress={() => navigation.navigate('About')} /> */}
-      {/* <Text style={styles.home}>Home</Text> */}
-      {/* <Button title="show" onPress={handlePress} /> */}
     </View>
   )
 }
