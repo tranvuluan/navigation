@@ -9,7 +9,6 @@ const View6 = ({ data, viewOfRoute, actionSheetRef }) => {
     // fetching data
     new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log('timeout');
         resolve();
       }, 3500);
     }).then(res => {

@@ -30,7 +30,6 @@ const Category = ({ navigation, route }) => {
   const handlePress = () => {
     const bottomsheet = checkOpenBottomSheet('About', viewTypes.VIEW11);
     alert(JSON.stringify(bottomsheet));
-    console.log(bottomsheet);
   }
 
   return (

@@ -29,7 +29,6 @@ const Home = ({ navigation, route }) => {
     code: 'VN',
     name: 'Viet Nam'
   }
-  console.log('load');
 
   const handleChooseOption = (option) => {
     switch (option) {

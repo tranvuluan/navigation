@@ -42,7 +42,6 @@ const AllowCloseBottomSheet = (routeName) => {
 
 const checkOpenBottomSheet = (routeName, contentView) => {
     const modals = store.getState().bottomsheet.modals;
-    console.log(modals);
     const getModal = modals.find(modal => modal.routeName === routeName);
     if (!getModal) return false;
     const stackModal = getModal.stackModal;
