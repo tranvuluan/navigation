@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Button, Image, ScrollView } from 'react-native'
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
+import { ShowBottomSheet, viewTypes } from '../../../utils/BottomSheet';
 
 
 const View10 = ({ data, viewOfRoute, actionSheetRef }) => {
@@ -11,6 +12,15 @@ const View10 = ({ data, viewOfRoute, actionSheetRef }) => {
     const handlePress = () => {
         navigation.navigate('About');
     }
+
+    const data9 = {
+        code: 'US',
+        name: 'United States'
+      }
+
+    const handlePress1 = () => {
+        ShowBottomSheet('Home', viewTypes.VIEW9, data9, 'push', true);
+      }
 
     return (
         <View style={styles.contentContainer}>
@@ -32,6 +42,8 @@ const View10 = ({ data, viewOfRoute, actionSheetRef }) => {
                 ))}
             </ScrollView>
             <Button style={styles.button} title="Go to About" onPress={handlePress} />
+            <Button style={styles.button} title="view 11" onPress={handlePress1} />
+
         </View>
     )
 }
