@@ -2,4 +2,5 @@ export const actionTypes = {
     SHOW_MODAL : "SHOW_MODAL",
     CLOSE_MODAL: "CLOSE_MODAL",
     ALLOW_CLOSE: "ALLOW_CLOSE",
+    STORE_SCREEN_DATA: "STORE_SCREEN_DATA",
 }

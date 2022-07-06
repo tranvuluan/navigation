@@ -49,3 +49,13 @@ export const allowCloseBottomSheetModal = (dispatch, { routeName }) => {
         }
     })
 }; 
+
+export const storeScreenData = (dispatch, { routeName, data }) => {
+    dispatch({
+        type: actionTypes.STORE_SCREEN_DATA,
+        payload: {
+            routeName: routeName,
+            data: data
+        }
+    })
+}

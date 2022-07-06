@@ -9,6 +9,13 @@ const BottomSheet = () => {
     const modal = modals.find(modal => modal.routeName === currentRoute);
     const stackModal = modal ? modal.stackModal : null;
 
+    // console.log('----BottomSheet----');
+    // console.log(bottomsheet);
+    console.log('----Route----');
+    console.log(currentRoute);
+    console.log('----Modal----');
+    console.log(modal);
+
     return (
         <>
             {stackModal && stackModal.map((bs, index) => <BSheet key={index} id={bs.id} isAllowClose={bs.isAllowClose} stackOfRoute={modal.routeName} contentView={bs.contentView} data={bs.data} />)}

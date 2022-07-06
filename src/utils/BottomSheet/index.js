@@ -50,11 +50,26 @@ const checkOpenBottomSheet = (routeName, contentView) => {
     return getBottomSheet;
 }
 
+const storeScreenData = (routeName, data) => {
+    // Type of data:
+    // Object: { key, value }
+    store.dispatch({
+        type: viewTypes.STORE_SCREEN_DATA,
+        payload: {
+            routeName: routeName,
+            data: data
+        }
+    })
+}
+
+// const 
+
 export {
     ShowBottomSheet,
     CloseBottomSheet,
     AllowCloseBottomSheet,
     checkOpenBottomSheet,
+    storeScreenData,
     viewTypes,
     mapContentView
 }

@@ -5,7 +5,8 @@ const initialState = {
     modals: [
         {
             routeName: ROUTE.HOME,
-            stackModal: []
+            stackModal: [],
+            screenData: []
         }
     ]
 }
@@ -28,7 +29,8 @@ const bottomSheetReducer = (state = initialState, action) => {
                     if (modal.routeName === action.payload.routeName) {
                         modal = {
                             routeName: action.payload.routeName,
-                            stackModal: newStackModal
+                            stackModal: newStackModal,
+                            screenData: modal.screenData
                         }
                     }
                     return modal;
@@ -38,25 +40,33 @@ const bottomSheetReducer = (state = initialState, action) => {
                     ...action.payload.modal,
                     id: 1
                 }
-                newStackModal.push(modalPayload); 
-                newModals = [...newModals, { routeName: action.payload.routeName, stackModal: newStackModal }];
+                newStackModal.push(modalPayload);
+                newModals = [...newModals, { routeName: action.payload.routeName, stackModal: newStackModal, screenData: [] }];
             }
-            
+
             return {
                 modals: newModals
             }
 
- 
+
         case actionTypes.CLOSE_MODAL:
             // get  modal by route name
-            const modalReplace = state.modals.find(modal => modal.routeName === action.payload.routeName);
+            let modalReplace = state.modals.find(modal => modal.routeName === action.payload.routeName);
+            console.log(modalReplace);
             let newStackModalReplace = modalReplace.stackModal;
             newStackModalReplace.pop();
+            if (newStackModalReplace.length === 0) {
+                let modals = state.modals.filter(modal => modal.routeName !== action.payload.routeName);
+                return {
+                    modals: modals
+                }
+            }
             const newModalsReplace = state.modals.map(modal => {
                 if (modal.routeName === action.payload.routeName) {
                     modal = {
                         routeName: action.payload.routeName,
-                        stackModal: newStackModalReplace
+                        stackModal: newStackModalReplace,
+                        screenData: modal.screenData
                     }
                 }
                 return modal;
@@ -74,7 +84,8 @@ const bottomSheetReducer = (state = initialState, action) => {
                 if (modal.routeName === action.payload.routeName) {
                     modal = {
                         routeName: action.payload.routeName,
-                        stackModal: newStackModalAllowClose
+                        stackModal: newStackModalAllowClose,
+                        screenData: modal.screenData
                     }
                 }
                 return modal;
@@ -82,6 +93,48 @@ const bottomSheetReducer = (state = initialState, action) => {
             )
             return {
                 modals: newModalsAllowClose
+            }
+
+
+        case actionTypes.STORE_SCREEN_DATA:
+            const getModal = state.modals.find(modal => modal.routeName === action.payload.routeName);
+            if (getModal) {
+                const newScreenData = getModal.screenData;
+                // check unique key of Object (key, value);
+                const checkUniqueKey = newScreenData.find(screenData => screenData.key === action.payload.data.key);
+                if (checkUniqueKey) {
+                    newScreenData.map(screenData => {
+                        if (screenData.key === action.payload.data.key) {
+                            screenData = {
+                                ...screenData,
+                                value: action.payload.data.value
+                            }
+                        }
+                        return screenData;
+                    }
+                    )
+                } else {
+                    newScreenData.push(action.payload.data);
+                }
+                const newModalsStoreScreenData = state.modals.map(modal => {
+                    if (modal.routeName === action.payload.routeName) {
+                        modal = {
+                            routeName: action.payload.routeName,
+                            stackModal: modal.stackModal,
+                            screenData: newScreenData
+                        }
+                    }
+                    return modal;
+                }
+                )
+                return {
+                    modals: newModalsStoreScreenData
+                }
+            } else {
+                const newModalsStore = [...state.modals, { routeName: action.payload.routeName, screenData: action.payload.data }];
+                return {
+                    modals: newModalsStore
+                }
             }
 
         default:
