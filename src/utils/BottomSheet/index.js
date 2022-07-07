@@ -1,10 +1,8 @@
 import React from 'react';
-import { showBottomSheetModal, replaceBottomSheetModal, closeBottomSheetModal, allowCloseBottomSheetModal } from '../../redux/BottomSheet/actions';
+import { showBottomSheetModal, replaceBottomSheetModal, closeBottomSheetModal, allowCloseBottomSheetModal, storeScreenData } from '../../redux/BottomSheet/actions';
 import { viewTypes } from './viewTypes';
 import { mapContentView } from './mapContentView';
 import store from '../../redux/store';
-
-
 
 const ShowBottomSheet = (routeName, contentView, data, typeOfShow, isAllowClose) => {
     const modal = {
@@ -50,26 +48,22 @@ const checkOpenBottomSheet = (routeName, contentView) => {
     return getBottomSheet;
 }
 
-const storeScreenData = (routeName, data) => {
+const StoreScreenData = (routeName, data) => {
     // Type of data:
     // Object: { key, value }
-    store.dispatch({
-        type: viewTypes.STORE_SCREEN_DATA,
-        payload: {
-            routeName: routeName,
-            data: data
-        }
-    })
+    storeScreenData(store.dispatch, {
+        routeName: routeName,
+        data: data
+    });
 }
 
-// const 
 
 export {
     ShowBottomSheet,
     CloseBottomSheet,
     AllowCloseBottomSheet,
     checkOpenBottomSheet,
-    storeScreenData,
+    StoreScreenData,
     viewTypes,
     mapContentView
 }
