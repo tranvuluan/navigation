@@ -2,10 +2,10 @@ import { ROUTE } from "../../navigation/typeRoute";
 import { actionTypes } from "./actionTypes";
 
 const initialState = {
-    modals: [
+    bsList: [
         {
             routeName: ROUTE.HOME,
-            stackModal: [],
+            stackBS: [],
             screenData: []
         }
     ]
@@ -13,93 +13,93 @@ const initialState = {
 
 const bottomSheetReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.SHOW_MODAL:
+        case actionTypes.SHOW_BS:
             // get  modal by route name
-            const modal = state.modals.find(modal => modal.routeName === action.payload.routeName);
-            let newModals = [...state.modals];
-            let newStackModal = [];
-            if (modal) {
-                newStackModal = modal.stackModal;
-                const modalPayload = {
-                    ...action.payload.modal,
-                    id: newStackModal.length + 1
+            const BS = state.bsList.find(bs => bs.routeName === action.payload.routeName);
+            let newBsList = [...state.bsList];
+            let newStackBS = [];
+            if (BS) {
+                newStackBS = BS.stackBS;
+                const bsPayload = {
+                    ...action.payload.bs,
+                    id: newStackBS.length + 1
                 }
-                newStackModal.push(modalPayload);
-                newModals = state.modals.map(modal => {
-                    if (modal.routeName === action.payload.routeName) {
-                        modal = {
+                newStackBS.push(bsPayload);
+                newBsList = state.bsList.map(bs => {
+                    if (bs.routeName === action.payload.routeName) {
+                        bs = {
                             routeName: action.payload.routeName,
-                            stackModal: newStackModal,
-                            screenData: modal.screenData
+                            stackBS: newStackBS,
+                            screenData: bs.screenData
                         }
                     }
-                    return modal;
+                    return bs;
                 })
             } else {
-                const modalPayload = {
-                    ...action.payload.modal,
+                const bsPayload = {
+                    ...action.payload.bs,
                     id: 1
                 }
-                newStackModal.push(modalPayload);
-                newModals = [...newModals, { routeName: action.payload.routeName, stackModal: newStackModal, screenData: [] }];
+                newStackBS.push(bsPayload);
+                newBsList = [...newBsList, { routeName: action.payload.routeName, stackBS: newStackBS, screenData: [] }];
             }
 
             return {
-                modals: newModals
+                bsList: newBsList
             }
 
 
-        case actionTypes.CLOSE_MODAL:
+        case actionTypes.CLOSE_BS:
             // get  modal by route name
-            let modalReplace = state.modals.find(modal => modal.routeName === action.payload.routeName);
-            console.log(modalReplace);
-            let newStackModalReplace = modalReplace.stackModal;
-            newStackModalReplace.pop();
-            if (newStackModalReplace.length === 0) {
-                let modals = state.modals.filter(modal => modal.routeName !== action.payload.routeName);
+            let bsReplace = state.bsList.find(bs => bs.routeName === action.payload.routeName);
+            let newStackBSReplace = bsReplace.stackBS;
+            newStackBSReplace.pop();
+            if (newStackBSReplace.length === 0) {
+                let bs = state.bsList.filter(bs => bs.routeName !== action.payload.routeName);
                 return {
-                    modals: modals
+                    bsList: bs
                 }
             }
-            const newModalsReplace = state.modals.map(modal => {
-                if (modal.routeName === action.payload.routeName) {
-                    modal = {
+            const newBSReplace = state.bsList.map(bs => {
+                if (bs.routeName === action.payload.routeName) {
+                    bs = {
                         routeName: action.payload.routeName,
-                        stackModal: newStackModalReplace,
-                        screenData: modal.screenData
+                        stackBS: newStackBSReplace,
+                        screenData: bs.screenData
                     }
                 }
-                return modal;
+                return bs;
             })
             return {
-                modals: newModalsReplace
+                bsList: newBSReplace
             }
 
 
         case actionTypes.ALLOW_CLOSE:
-            const modalAllowClose = state.modals.find(modal => modal.routeName === action.payload.routeName);
-            let newStackModalAllowClose = modalAllowClose.stackModal;
-            newStackModalAllowClose[newStackModalAllowClose.length - 1].isAllowClose = true;
-            const newModalsAllowClose = state.modals.map(modal => {
-                if (modal.routeName === action.payload.routeName) {
-                    modal = {
+            const bsAllowClose = state.bsList.find(bs => bs.routeName === action.payload.routeName);
+            let newStackBSAllowClose = bsAllowClose.stackBS;
+            newStackBSAllowClose[newStackBSAllowClose.length - 1].isAllowClose = true;
+            const newBsListAllowClose = state.bsList.map(bs => {
+                if (bs.routeName === action.payload.routeName) {
+                    bs = {
                         routeName: action.payload.routeName,
-                        stackModal: newStackModalAllowClose,
-                        screenData: modal.screenData
+                        stackBS: newStackBSAllowClose,
+                        screenData: bs.screenData
                     }
                 }
-                return modal;
+                return bs;
             }
             )
             return {
-                modals: newModalsAllowClose
+                bsList: newBsListAllowClose
             }
 
 
         case actionTypes.STORE_SCREEN_DATA:
-            const getModal = state.modals.find(modal => modal.routeName === action.payload.routeName);
-            if (getModal) {
-                const newScreenData = getModal.screenData;
+            const getBS = state.bsList.find(bs => bs.routeName === action.payload.routeName);
+            let newScreenData = [];
+            if (getBS) {
+                 newScreenData = getBS.screenData;
                 // check unique key of Object (key, value);
                 const checkUniqueKey = newScreenData.find(screenData => screenData.key === action.payload.data.key);
                 if (checkUniqueKey) {
@@ -116,24 +116,23 @@ const bottomSheetReducer = (state = initialState, action) => {
                 } else {
                     newScreenData.push(action.payload.data);
                 }
-                const newModalsStoreScreenData = state.modals.map(modal => {
-                    if (modal.routeName === action.payload.routeName) {
-                        modal = {
+                const newBsListStoreScreenData = state.bsList.map(bs => {
+                    if (bs.routeName === action.payload.routeName) {
+                        bs = {
                             routeName: action.payload.routeName,
-                            stackModal: modal.stackModal,
+                            stackBS: bs.stackBS,
                             screenData: newScreenData
                         }
                     }
-                    return modal;
-                }
-                )
+                    return bs;
+                })
                 return {
-                    modals: newModalsStoreScreenData
+                    bsList: newBsListStoreScreenData
                 }
             } else {
-                const newModalsStore = [...state.modals, { routeName: action.payload.routeName, screenData: action.payload.data }];
+                const newBSListStore = [...state.bsList, { routeName: action.payload.routeName, stackBS: [], screenData: [...newScreenData, action.payload.data] }];
                 return {
-                    modals: newModalsStore
+                    bsList: newBSListStore
                 }
             }
 

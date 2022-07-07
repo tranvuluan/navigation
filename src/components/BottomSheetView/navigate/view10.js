@@ -7,7 +7,7 @@ import { ShowBottomSheet, viewTypes } from '../../../utils/BottomSheet';
 
 const View10 = ({ data, viewOfRoute, actionSheetRef }) => {
     const navigation = useNavigation();
-    const cart = useSelector(state => state.cart.cart);
+    const screenDataBS = useSelector(state => state.bottomsheet.bsList.find(bs => bs.routeName === viewOfRoute));
 
     const handlePress = () => {
         navigation.navigate('About');
@@ -32,14 +32,12 @@ const View10 = ({ data, viewOfRoute, actionSheetRef }) => {
                     actionSheetRef.current?.handleChildScrollEnd()
                 }
             >
-                {cart.map((item, index) => (
-                    <View key={index} style={styles.cardItem}>
-                        <Text>id: {item.id}</Text>
-                        <Text>name: {item.name}</Text>
-                        <Text>price: {item.price}</Text>
-                        <Image style={styles.image} source={{ uri: "https://reactjs.org/logo-og.png" }} />
+               
+                    <View  style={styles.cardItem}>
+                        <Text>key: {screenDataBS.key}</Text>
+                        <Text>value: {screenDataBS.value}</Text>
                     </View>
-                ))}
+           
             </ScrollView>
             <Button style={styles.button} title="Go to About" onPress={handlePress} />
             <Button style={styles.button} title="view 11" onPress={handlePress1} />

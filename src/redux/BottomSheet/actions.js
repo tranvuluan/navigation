@@ -1,29 +1,29 @@
 import { actionTypes } from "./actionTypes"
 
-export const showBottomSheetModal = (dispatch, { routeName, modal }) => {
+export const showBottomSheet = (dispatch, { routeName, bs }) => {
     setTimeout(() => {
         dispatch({
-            type: actionTypes.SHOW_MODAL,
+            type: actionTypes.SHOW_BS,
             payload: {
-                modal: { ...modal },
+                bs: { ...bs },
                 routeName: routeName
             }
         })
     }, 0);
 }
 
-export const replaceBottomSheetModal = (dispatch, { routeName, modal }) => {
+export const replaceBottomSheet = (dispatch, { routeName, bs }) => {
     dispatch({
-        type: actionTypes.CLOSE_MODAL,
+        type: actionTypes.CLOSE_BS,
         payload: {
             routeName: routeName
         }
     });
     setTimeout(() => {
         dispatch({
-            type: actionTypes.SHOW_MODAL,
+            type: actionTypes.SHOW_BS,
             payload: {
-                modal: { ...modal },
+                bs: { ...bs },
                 routeName: routeName
             }
         });
@@ -32,16 +32,16 @@ export const replaceBottomSheetModal = (dispatch, { routeName, modal }) => {
 
 };
 
-export const closeBottomSheetModal = (dispatch, { routeName }) => {
+export const closeBottomSheet = (dispatch, { routeName }) => {
     dispatch({
-        type: actionTypes.CLOSE_MODAL,
+        type: actionTypes.CLOSE_BS,
         payload: {
             routeName: routeName
         }
     })
 }
 
-export const allowCloseBottomSheetModal = (dispatch, { routeName }) => {
+export const allowCloseBottomSheet = (dispatch, { routeName }) => {
     dispatch({
         type: actionTypes.ALLOW_CLOSE,
         payload: {

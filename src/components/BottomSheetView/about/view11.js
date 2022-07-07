@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
+import { StoreScreenData } from '../../../utils/BottomSheet';
 
 
 const View11 = ({ data, viewOfRoute, actionSheetRef }) => {

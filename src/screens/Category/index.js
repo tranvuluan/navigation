@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import {
   checkOpenBottomSheet,
   ShowBottomSheet,
+  StoreScreenData,
   viewTypes,
 } from '../../utils/BottomSheet';
 import styles from './style';
@@ -32,9 +33,17 @@ const Category = ({ navigation, route }) => {
     alert(JSON.stringify(bottomsheet));
   }
 
+  const handleStoreData = () => {
+    StoreScreenData('About', {
+      key: 'v1',
+      value: 'value 1'
+    });
+  }
+
   return (
     <View style={styles.container}>
       <Button title="Go to About" onPress={() => navigation.navigate('About')} />
+      <Button title="store screen data" onPress={handleStoreData} />
       <Button title="Check bottomsheet" onPress={handlePress} />
     </View>
   )

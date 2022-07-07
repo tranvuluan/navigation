@@ -15,7 +15,7 @@ const View6 = ({ data, viewOfRoute, actionSheetRef }) => {
       AllowCloseBottomSheet(viewOfRoute);
       setFetched(true);
     })
-    .catch(err => reject(err));
+    .catch(err => console.log(err));
 
   }, []);
 
