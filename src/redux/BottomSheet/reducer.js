@@ -52,6 +52,9 @@ const bottomSheetReducer = (state = initialState, action) => {
         case actionTypes.CLOSE_BS:
             // get  modal by route name
             let bsReplace = state.bsList.find(bs => bs.routeName === action.payload.routeName);
+            if (!bsReplace) {
+                return state;
+            }
             let newStackBSReplace = bsReplace.stackBS;
             newStackBSReplace.pop();
             if (newStackBSReplace.length === 0) {

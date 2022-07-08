@@ -9,12 +9,6 @@ const BottomSheet = () => {
     const BS = bsList.find(bs => bs.routeName === currentRoute);
     const stackBS = BS ? BS.stackBS : null;
 
-    // console.log('----BottomSheet----');
-    // console.log(bottomsheet);
-    console.log('----Route----');
-    console.log(currentRoute);
-    console.log('----BS----');
-    console.log(BS);
 
     return (
         <>
