@@ -50,9 +50,9 @@ export const allowCloseBottomSheet = (dispatch, { routeName }) => {
     })
 }; 
 
-export const storeScreenData = (dispatch, { routeName, data }) => {
+export const setScreenData = (dispatch, { routeName, data }) => {
     dispatch({
-        type: actionTypes.STORE_SCREEN_DATA,
+        type: actionTypes.SET_SCREEN_DATA,
         payload: {
             routeName: routeName,
             data: data

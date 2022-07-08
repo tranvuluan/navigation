@@ -2,13 +2,14 @@ import { StyleSheet, Text, View, Button, Image, ScrollView } from 'react-native'
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import { ShowBottomSheet, viewTypes } from '../../../utils/BottomSheet';
+import { GetScreenData, ShowBottomSheet, viewTypes } from '../../../utils/BottomSheet';
 
 
 const View10 = ({ data, viewOfRoute, actionSheetRef }) => {
     const navigation = useNavigation();
-    const screenDataBS = useSelector(state => state.bottomsheet.bsList.find(bs => bs.routeName === viewOfRoute));
+    const screenData = GetScreenData('Home');
 
+    console.log(screenData);
     const handlePress = () => {
         navigation.navigate('About');
     }
@@ -34,8 +35,7 @@ const View10 = ({ data, viewOfRoute, actionSheetRef }) => {
             >
                
                     <View  style={styles.cardItem}>
-                        <Text>key: {screenDataBS.key}</Text>
-                        <Text>value: {screenDataBS.value}</Text>
+                        <Text>address: {screenData?.address || ''}</Text>
                     </View>
            
             </ScrollView>

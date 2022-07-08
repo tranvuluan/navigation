@@ -2,12 +2,13 @@ import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
-import { StoreScreenData } from '../../../utils/BottomSheet';
+import { GetScreenData, SetScreenData } from '../../../utils/BottomSheet';
 
 
 const View11 = ({ data, viewOfRoute, actionSheetRef }) => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
+    const screenData = GetScreenData('About');
 
     const item = {
         id: 1,
@@ -17,19 +18,18 @@ const View11 = ({ data, viewOfRoute, actionSheetRef }) => {
     }
 
     const handleStoreScreenData = () => {
-        StoreScreenData('Home', {
-            key: 'v1',
-            value: 'value 1'
-        })
+        SetScreenData('Home', {address: 'Ho Chi Minh'});
+        navigation.navigate('Home');
     }
 
     return (
         <View style={styles.contentContainer}>
             <Text>View 11 🎉</Text>
             <Text>Code: {data.code} - {data.name} 🎉</Text>
+            <Text>company: {screenData?.company}</Text>
             <View style={styles.buttonList}>
                 <Button style={styles.button} title="Store screen data" onPress={handleStoreScreenData} />
-                <Button style={styles.button} title="Go to Home" onPress={() => navigation.navigate('Home')} />
+                {/* <Button style={styles.button} title="Go to Home" onPress={() => } /> */}
                 <Button style={styles.button} title="Go to Category" onPress={() => navigation.navigate('Category')} />
             </View>
         </View>

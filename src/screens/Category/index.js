@@ -4,8 +4,7 @@ import { changeRoute } from '../../redux/Route/actions';
 import { useDispatch } from 'react-redux';
 import {
   checkOpenBottomSheet,
-  ShowBottomSheet,
-  StoreScreenData,
+  SetScreenData,
   viewTypes,
 } from '../../utils/BottomSheet';
 import styles from './style';
@@ -34,10 +33,8 @@ const Category = ({ navigation, route }) => {
   }
 
   const handleStoreData = () => {
-    StoreScreenData('About', {
-      key: 'v1',
-      value: 'value 1'
-    });
+    SetScreenData('About', {company: 'Zien'});
+    navigation.navigate('About');
   }
 
   return (

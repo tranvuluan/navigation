@@ -6,7 +6,7 @@ const initialState = {
         {
             routeName: ROUTE.HOME,
             stackBS: [],
-            screenData: []
+            screenData: {}
         }
     ]
 }
@@ -41,7 +41,7 @@ const bottomSheetReducer = (state = initialState, action) => {
                     id: 1
                 }
                 newStackBS.push(bsPayload);
-                newBsList = [...newBsList, { routeName: action.payload.routeName, stackBS: newStackBS, screenData: [] }];
+                newBsList = [...newBsList, { routeName: action.payload.routeName, stackBS: newStackBS, screenData: {} }];
             }
 
             return {
@@ -95,27 +95,13 @@ const bottomSheetReducer = (state = initialState, action) => {
             }
 
 
-        case actionTypes.STORE_SCREEN_DATA:
+        case actionTypes.SET_SCREEN_DATA:
             const getBS = state.bsList.find(bs => bs.routeName === action.payload.routeName);
-            let newScreenData = [];
+            const {data } = action.payload;
+            let newScreenData = {};
             if (getBS) {
                  newScreenData = getBS.screenData;
-                // check unique key of Object (key, value);
-                const checkUniqueKey = newScreenData.find(screenData => screenData.key === action.payload.data.key);
-                if (checkUniqueKey) {
-                    newScreenData.map(screenData => {
-                        if (screenData.key === action.payload.data.key) {
-                            screenData = {
-                                ...screenData,
-                                value: action.payload.data.value
-                            }
-                        }
-                        return screenData;
-                    }
-                    )
-                } else {
-                    newScreenData.push(action.payload.data);
-                }
+                newScreenData = Object.assign({}, newScreenData, data);
                 const newBsListStoreScreenData = state.bsList.map(bs => {
                     if (bs.routeName === action.payload.routeName) {
                         bs = {
@@ -130,7 +116,8 @@ const bottomSheetReducer = (state = initialState, action) => {
                     bsList: newBsListStoreScreenData
                 }
             } else {
-                const newBSListStore = [...state.bsList, { routeName: action.payload.routeName, stackBS: [], screenData: [...newScreenData, action.payload.data] }];
+                newScreenData = Object.assign({}, data);
+                const newBSListStore = [...state.bsList, { routeName: action.payload.routeName, stackBS: [], screenData: newScreenData }];
                 return {
                     bsList: newBSListStore
                 }

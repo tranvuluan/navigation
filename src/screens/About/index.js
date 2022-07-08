@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { changeRoute } from '../../redux/Route/actions';
 import { useDispatch } from 'react-redux';
 import {
+  GetScreenData,
   ShowBottomSheet,
   viewTypes,
 } from '../../utils/BottomSheet';
@@ -11,6 +12,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const About = ({ navigation, route }) => {
   const dispatch = useDispatch();
+  const screenData = GetScreenData(route.name);
+
+
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       changeRoute(dispatch, {
@@ -41,10 +45,7 @@ const About = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <View style={styles.cardItem}>
-        <Text>id: {item.id}</Text>
-        <Text>name: {item.name}</Text>
-        <Text>price: {item.price}</Text>
-        <Image style={styles.image} source={{ uri: "https://reactjs.org/logo-og.png" }} />
+      <Text>Company: {screenData?.company || ''}</Text>
       </View>
       <View style={styles.buttonGroup}>
         <TouchableOpacity style={styles.button}>
